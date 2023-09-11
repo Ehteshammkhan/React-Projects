@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.outline-none {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
