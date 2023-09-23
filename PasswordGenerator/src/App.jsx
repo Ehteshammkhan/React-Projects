@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 
 
 function App() {
@@ -6,6 +6,10 @@ function App() {
   const [numberAllowed, setNumberAllowed] = useState(false)
   const [charAllowed, setCharAllowed] = useState(false)
   const [Password, setPassword] = useState("")
+
+  // Useref Hook
+  const PasswordRef = useRef(null)
+
 
   const passwordGenerator = useCallback(() => {
     let pass = ""
@@ -22,21 +26,29 @@ function App() {
     setPassword(pass)
   }, [length, numberAllowed, charAllowed])
 
+  const copyPasswordToClipboard = useCallback(() => {
+    PasswordRef.current?.select()
+    PasswordRef.current?.setSelectionRange(0, 101)
+    // console.log(PasswordRef.current);
+    window.navigator.clipboard.writeText(Password)
+  }, [Password])
+
   useEffect(() => {
     passwordGenerator()
   }, [length, numberAllowed, charAllowed])
 
   return (
     <>
-      <div className='w-full w-2/5 mx-auto shadow-md rounded-lg px-6 py-8 my-8 text-orange-500 bg-gray-700'>
+      <div className='w-1/3 mx-auto shadow-md rounded-lg px-6 py-8 my-8 text-orange-500 bg-gray-700'>
         <h1 className='text-3xl text-center text-white mb-4'>Password Generator</h1>
         <div className='flex shadow rounded-lg overflow-hidden mb-4'>
           <input type="text"
+            ref={PasswordRef}
             value={Password}
             placeholder='Password'
             className='outline-none w-full py-2 px-3'
           />
-          <button className='outline-none px-4 bg-blue-700 text-white py-0.5 shrink-0'>Copy</button>
+          <button className='outline-none px-4 bg-blue-700 text-white py-0.5 shrink-0' onClick={copyPasswordToClipboard}>Copy</button>
         </div>
         <div className='flex text-sm gap-x-2 flex justify-between'>
           <div className='flex items-center gap-x-1'>
