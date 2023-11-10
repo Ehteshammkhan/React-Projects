@@ -33,6 +33,9 @@ function App() {
         <div className="flex flex-wrap jutify-center gap-3 shadow-lg bg-white px-3 py-2 rounded-3xl">
           <button className="outline-none py-1 px-4 rounded-full text-white shadow-lg" style={{ backgroundColor: "pink" }} onClick={() => setColor("pink")}>pink</button>
         </div>
+        <div className="flex flex-wrap jutify-center gap-3 shadow-lg bg-white px-3 py-2 rounded-3xl">
+          <button className="outline-none py-1 px-4 rounded-full text-white shadow-lg" style={{ backgroundColor: "magenta" }} onClick={() => setColor("magenta")}>Magenta</button>
+        </div>
       </div>
     </div>
   )
